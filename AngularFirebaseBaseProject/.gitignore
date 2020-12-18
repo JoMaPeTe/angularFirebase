@@ -44,3 +44,7 @@ testem.log
 # System Files
 .DS_Store
 Thumbs.db
+
+# API KEYS ENVIROMENT
+./AngularFirebaseBaseProject/src/environments/environment.prod.ts
+./AngularFirebaseBaseProject/src/environments/environment.ts
