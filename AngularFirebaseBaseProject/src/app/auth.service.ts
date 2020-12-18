@@ -7,6 +7,7 @@ import { Router } from '@angular/router';
 
 
 
+
 @Injectable({
   providedIn: 'root'
 })
@@ -32,14 +33,13 @@ export class AuthService {
 
 login(){
   console.log('Login!!');
-  this.auth.signInWithEmailAndPassword( this.email,this.pass )
+  return this.auth.signInWithEmailAndPassword( this.email,this.pass )
   .then( user => {
     console.log('user logado con mail: ', user);
-  
+    this.email= '';
+    this.pass = '';
   })
-  .catch( error => {
-    console.log('error en mail login: ', error);
-  })
+ 
 }
  
 glogin(){

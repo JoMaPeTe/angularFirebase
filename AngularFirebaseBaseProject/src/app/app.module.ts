@@ -10,6 +10,10 @@ import { FormsModule } from '@angular/forms';
 import { HomeComponent } from './home/home.component';
 import { SettingsComponent } from './settings/settings.component';
 
+import { CommonModule } from '@angular/common';
+import { BrowserAnimationsModule } from '@angular/platform-browser/animations';
+import { ToastrModule } from 'ngx-toastr';
+
 @NgModule({
   declarations: [
     AppComponent,
@@ -21,7 +25,14 @@ import { SettingsComponent } from './settings/settings.component';
     AppRoutingModule,
     AngularFireModule.initializeApp(environment.firebaseConfig),
     AngularFireAuthModule,
-    FormsModule
+    FormsModule,
+    CommonModule,
+    BrowserAnimationsModule, // required animations module
+    ToastrModule.forRoot({
+        timeOut: 2000,
+        positionClass: 'toast-top-center'
+       }) // ToastrModule added
+
   ],
   providers: [],
   bootstrap: [AppComponent]
