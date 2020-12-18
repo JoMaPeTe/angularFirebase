@@ -5,3 +5,17 @@
     float: none;
     margin: auto;
 }
+
+.userDiv {
+    padding: 10px;
+    float:right;
+
+}
+
+.sectionDiv {
+    text-align: center;
+    width: 100%;
+    padding: 10px;
+    float: none;
+    margin: auto;
+}

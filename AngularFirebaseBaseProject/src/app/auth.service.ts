@@ -2,6 +2,7 @@ import { Injectable } from '@angular/core';
 import { AngularFireAuth} from '@angular/fire/auth';
 import { map } from 'rxjs/operators';
 import  firebase  from 'firebase/app';
+import { Router } from '@angular/router';
 
 
 
@@ -15,7 +16,8 @@ export class AuthService {
   pass = '';
   authUser = null;
 
-  constructor(public auth: AngularFireAuth,
+  constructor(public auth: AngularFireAuth, 
+              private route: Router
              ) { } //atributo publico de la clase del tipo AngularFireAuth
 
   user = this.auth.authState.pipe (map (authState => {
@@ -57,7 +59,7 @@ logout(){
   this.auth.signOut();
   this.email = '';
   this.pass = '';
-  
+  this.route.navigate(['/']);
 }
 
 }
