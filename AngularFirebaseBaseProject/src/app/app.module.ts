@@ -6,6 +6,7 @@ import { AppComponent } from './app.component';
 import { AngularFireModule} from '@angular/fire';
 import { AngularFireAuthModule } from '@angular/fire/auth';
 import { AngularFireDatabaseModule } from '@angular/fire/database';
+import { AngularFireStorageModule } from '@angular/fire/storage';
 import { environment } from 'src/environments/environment';
 import { FormsModule } from '@angular/forms';
 import { HomeComponent } from './home/home.component';
@@ -28,6 +29,7 @@ import { UsersComponent } from './users/users.component';
     AppRoutingModule,
     AngularFireModule.initializeApp(environment.firebaseConfig),
     AngularFireAuthModule,
+    AngularFireStorageModule,
     FormsModule,
     CommonModule,
     BrowserAnimationsModule, // required animations module

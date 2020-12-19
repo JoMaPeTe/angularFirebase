@@ -1,5 +1,6 @@
 import { Component, OnInit } from '@angular/core';
 import { Router } from '@angular/router';
+import { FirestorageService } from '../firestorage.service';
 
 @Component({
   selector: 'app-settings',
@@ -8,7 +9,8 @@ import { Router } from '@angular/router';
 })
 export class SettingsComponent implements OnInit {
 
-  constructor(private route:Router) { }
+  constructor(private route:Router,
+              public firestorage : FirestorageService ) { }
 
   ngOnInit(): void {
   }

@@ -14,7 +14,7 @@ export class AuthService {
 
   email = '';
   pass = '';
-  authUser = null;
+  authUser: any = null;
 
   constructor(public auth: AngularFireAuth, //atributo publico de la clase del tipo AngularFireAuth
               private route: Router,
@@ -24,6 +24,7 @@ export class AuthService {
   user = this.auth.authState.pipe (map (authState => {
     //console.log('authState: ', authState);
    if (authState){ 
+     this.authUser = authState; 
      return authState;
   }else{
     return null;
@@ -38,6 +39,7 @@ login(){
     console.log('user logado con mail: ', user);
     this.email= '';
     this.pass = '';
+    this.authUser = user.user; 
     this.firedb.updateUserData(user.user);
   })
  
@@ -48,6 +50,9 @@ glogin(){
   this.auth.signInWithPopup( new firebase.auth.GoogleAuthProvider() )
   .then( user => {
     console.log('user logado: ', user);
+    this.email= '';
+    this.pass = '';
+    this.authUser = user.user; 
     this.firedb.updateUserData(user.user);
   })
   .catch( error => {
