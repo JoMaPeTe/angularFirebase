@@ -23,11 +23,11 @@ export class FireDBService {
   getUsers(){
     const path = 'users/';
     //return this.db.list(path).valueChanges();
-    return this.db.list(path).snapshotChanges;
+    return this.db.list(path).snapshotChanges();
   }
 
   removeUser(userUid: any){
     const path = 'users/' + userUid;
-    return this.db.object(path).remove;
+    return this.db.object(path).remove();
   }
 }
