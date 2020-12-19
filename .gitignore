@@ -1,3 +1,5 @@
 node_modules
- AngularFirebaseBaseProject/src/environments/environment.ts
- AngularFirebaseBaseProject/src/environments/environment.prod.ts
+
+AngularFirebaseBaseProject/src/environments/environment.ts
+AngularFirebaseBaseProject/src/environments/environment.prod.ts
+
