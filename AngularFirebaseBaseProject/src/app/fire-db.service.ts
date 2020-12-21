@@ -1,13 +1,16 @@
 import { Injectable } from '@angular/core';
 import { AngularFireDatabase} from '@angular/fire/database';
-
+import { AuthService } from './auth.service';
+import { FirestorageService } from './firestorage.service';
 
 @Injectable({
   providedIn: 'root'
 })
 export class FireDBService {
 
-  constructor(private db: AngularFireDatabase) { }
+  constructor(private db: AngularFireDatabase,
+               public firestorage : FirestorageService,
+               public auth: AuthService ) { }
  
   updateUserData(user: any){
     console.log('user: ', user);
@@ -18,6 +21,18 @@ export class FireDBService {
     this.db.object(path).update(u)
     .catch( error => console.log(error));
    
+  }
+
+  updateUserImageURL(){
+    
+    const path = 'users/' + this.auth.authUser.uid ;
+
+    const u = {
+      image: this.firestorage.downloadURL
+    }
+    this.db.object(path).update(u)
+    .catch( error => console.log(error));
+    
   }
 
   getUsers(){

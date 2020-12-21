@@ -1,14 +1,23 @@
 import { Injectable } from '@angular/core';
-import {  AngularFireStorage } from '@angular/fire/storage'
+import {  AngularFireStorage, AngularFireUploadTask  } from '@angular/fire/storage'
 import { AuthService } from './auth.service';
+import { Observable, of } from 'rxjs';
+import { finalize } from 'rxjs/operators';
+import { FireDBService} from './fire-db.service';
 
 @Injectable({
   providedIn: 'root'
 })
 export class FirestorageService {
 
+    path = '';
+    task: AngularFireUploadTask | undefined ;
+    uploadProgress = new Observable();
+    downloadURL = of('');
+
   constructor(public firestorage: AngularFireStorage,
-              public auth: AuthService  ) { }
+              public auth: AuthService,
+              private db: FireDBService  ) { }
 
   uploadFile(event: any) {
     console.log('event: ', event);
@@ -18,12 +27,19 @@ export class FirestorageService {
       ext = '.png';
     }
    
-    this.firestorage.upload('images/' + this.auth.authUser.uid  + ext, event.target.files[0])
-    .then(result => {
-      console.log('result: ', result);
-    }).catch(error => {
-      console.log('error: ', error);
-    });
+    const path = this.path + this.auth.authUser.uid  + ext;
+    const ref = this.firestorage.ref(path);
+
+    this.task = this.firestorage.upload(  path, event.target.files[0]);
+    
+    this.uploadProgress = this.task.percentageChanges();
+
+    this.task.snapshotChanges().pipe( finalize ( ()=> {
+      this.downloadURL = ref.getDownloadURL();
+      this.db.updateUserImageURL();
+      console.log('this.downloadURL: ', this.downloadURL);
+    })).subscribe();
+   
   }
 
 }

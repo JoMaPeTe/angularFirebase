@@ -1,7 +1,7 @@
 {
   "rulesFile": "database.rules.json",
   "hosting": {
-    "public": "dist",
+    "public": "dist/AngularFirebaseBaseProject",
     "ignore": [
       "firebase.json",
       "**/.*",

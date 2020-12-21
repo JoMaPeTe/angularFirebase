@@ -35,12 +35,12 @@ export class AuthService {
 login(){
   console.log('Login!!');
   return this.auth.signInWithEmailAndPassword( this.email,this.pass )
-  .then( user => {
-    console.log('user logado con mail: ', user);
+  .then( usuario => {
+    console.log('user logado con mail: ', usuario);
     this.email= '';
     this.pass = '';
-    this.authUser = user.user; 
-    this.firedb.updateUserData(user.user);
+    this.authUser = usuario.user; 
+    this.firedb.updateUserData(usuario.user);
   })
  
 }
