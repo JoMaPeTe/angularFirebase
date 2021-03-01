@@ -9,4 +9,6 @@ La base de datos de firebase realdata? trabaja con objetos JSON, es funcional,  
 
 .- Pruebas realizadas con códigos de 2018 y firebase2 no han funcionado, por lo que no se incluye
 
+Ref: https://github.com/OpenWebinarsNet/Curso_Angular7Firebase_OpenWebinars/blob/master/AngularFirebaseBaseProject/src/app/auth.service.ts
+
 I love :tea: and :guitar:
